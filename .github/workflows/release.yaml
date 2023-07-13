@@ -20,6 +20,8 @@ jobs:
     permissions:
       contents: write # Needed for release uploads
       id-token: write # Needed for signing Sbom
+    outputs:
+      hashes: ${{ steps.sbom-hash.outputs.hashes}}
     runs-on: ubuntu-22.04
     steps:
       - name: Checkout code
