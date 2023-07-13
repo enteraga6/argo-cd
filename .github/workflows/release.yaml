@@ -39,7 +39,7 @@ jobs:
           # managers (gomod, yarn, npm).
           PROJECT_FOLDERS: ".,./ui"
           # full qualified name of the docker image to be inspected
-          DOCKER_IMAGE: quay.io/enteraga6/argocd:${{ github.ref_name }}
+          DOCKER_IMAGE: quay.io/argoproj/argocd:v2.8.0-rc3
         run: |
           yarn install --cwd ./ui
           go install github.com/spdx/spdx-sbom-generator/cmd/generator@$SPDX_GEN_VERSION
