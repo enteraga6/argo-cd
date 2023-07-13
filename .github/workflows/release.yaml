@@ -85,7 +85,6 @@ jobs:
       actions: read # for detecting the Github Actions environment
       id-token: write # Needed for provenance signing and ID
       contents: write #  Needed for release uploads
-    if: github.repository == 'argoproj/argo-cd'
     # Must be refernced by a tag. https://github.com/slsa-framework/slsa-github-generator/blob/main/internal/builders/container/README.md#referencing-the-slsa-generator
     uses: slsa-framework/slsa-github-generator/.github/workflows/generator_generic_slsa3.yml@v1.7.0
     with:
@@ -97,7 +96,6 @@ jobs:
     permissions:
       contents: write # Needed to push commit to update stable tag
       pull-requests: write # Needed to create PR for VERSION update.
-    if: github.repository == 'argoproj/argo-cd'
     runs-on: ubuntu-22.04
     steps:
       - name: Checkout code
@@ -105,12 +103,6 @@ jobs:
         with:
           fetch-depth: 0
           token: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Setup Git author information
-        run: |
-          set -ue
-          git config --global user.email 'ci@argoproj.com'
-          git config --global user.name 'CI'
 
       - name: Check if tag is the latest version and not a pre-release
         run: |
